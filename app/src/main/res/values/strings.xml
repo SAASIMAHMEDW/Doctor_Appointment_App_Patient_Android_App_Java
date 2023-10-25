@@ -1,0 +1,40 @@
+<resources>
+    <string name="app_name">Appmai</string>
+    <string name="button">Button</string>
+    <string name="name">Name</string>
+    <string name="email">Email</string>
+    <string name="password">password</string>
+    <string name="login_page">Login page</string>
+    <string name="password1">Password</string>
+    <string name="login">Login</string>
+    <string name="forgetten_your_password">Forgetten your password?</string>
+    <string name="don_t_have_an_account">Don\'t have an account?</string>
+    <string name="sign_up">Sign up</string>
+    <string name="loginss">Login</string>
+    <string name="login_pages">Login Page</string>
+    <string name="login2">LOGIN</string>
+    <string name="user">User</string>
+    <string name="logins">Login</string>
+    <string name="emailsig">Email</string>
+    <string name="passwordss">Password</string>
+    <string name="signup">SIGNUP</string>
+    <string name="users">User</string>
+    <string name="signups">SignUp</string>
+    <string name="todo">TODO</string>
+    <string name="appointment">APPOINTMENT</string>
+    <string name="avaliable">Avaliable</string>
+    <string name="avaliab">Avaliab</string>
+    <string name="age">Age</string>
+    <string name="name2">Name</string>
+    <string name="hint">hint</string>
+    <color name="AppPrimaryColorX">#FFC529</color>
+    <color name="AppSecondaryColorX">#FE724C</color>
+    <color name="AppThirdColorX">#D7D7D7</color>
+    <color name="AppFourthColorX">#272D2F</color>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="textview">TextView</string>
+    <string name="name12">Name</string>
+    <string name="name13">Name</string>
+    <string name="enter_age">Enter Age</string>
+</resources>

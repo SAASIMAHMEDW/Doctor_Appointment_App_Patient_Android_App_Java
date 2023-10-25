@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Avaliable">
+
+    <FrameLayout
+        android:id="@+id/adminpanelContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:layout_marginBottom="?attr/actionBarSize"
+
+        />
+    <!--    android:layout_marginBottom="?attr/actionBarSize"-->
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/adminPanelBottomViewNav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:itemBackground="@drawable/bottom_nav_item_background"
+        android:background="@color/AppPrimaryColorX"
+        app:menu="@menu/user_option_menu"
+        >
+        <!--        android:background="@drawable/bottom_navbar_selected_item_bgcolor"-->
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
+
+</RelativeLayout>
+
+
+
+<!--<?xml version="1.0" encoding="utf-8"?>-->
+<!--<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--    xmlns:tools="http://schemas.android.com/tools"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    android:fillViewport="true"-->
+<!--    app:layout_constraintBottom_toBottomOf="parent"-->
+<!--    app:layout_constraintEnd_toEndOf="parent"-->
+<!--    app:layout_constraintStart_toStartOf="parent"-->
+<!--    app:layout_constraintTop_toTopOf="parent"-->
+<!--    tools:ignore="SpeakableTextPresentCheck">-->
+
+<!--    <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        tools:context=".Avaliable">-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/textView10"-->
+<!--            android:layout_width="326dp"-->
+<!--            android:layout_height="100dp"-->
+<!--            android:layout_marginTop="80dp"-->
+<!--            android:background="@drawable/border"-->
+<!--            android:gravity="center"-->
+<!--            android:text="@string/avaliab"-->
+<!--            android:textSize="34sp"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintHorizontal_bias="0.494"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/textView11"-->
+<!--            android:layout_width="326dp"-->
+<!--            android:layout_height="100dp"-->
+<!--            android:layout_marginTop="32dp"-->
+<!--            android:background="@drawable/border"-->
+<!--            android:gravity="center"-->
+<!--            android:text="Avaliab"-->
+<!--            android:textSize="34sp"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintHorizontal_bias="0.494"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/textView12"-->
+<!--            tools:ignore="HardcodedText" />-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/textView12"-->
+<!--            android:layout_width="326dp"-->
+<!--            android:layout_height="100dp"-->
+<!--            android:layout_marginTop="8dp"-->
+<!--            android:background="@drawable/border"-->
+<!--            android:gravity="center"-->
+<!--            android:text="Avaliab"-->
+<!--            android:textSize="34sp"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintHorizontal_bias="0.505"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/textView13"-->
+<!--            tools:ignore="HardcodedText" />-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/textView13"-->
+<!--            android:layout_width="326dp"-->
+<!--            android:layout_height="100dp"-->
+<!--            android:layout_marginTop="12dp"-->
+<!--            android:background="@drawable/border"-->
+<!--            android:gravity="center"-->
+<!--            android:text="Avaliab"-->
+<!--            android:textSize="34sp"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintHorizontal_bias="0.494"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/textView14"-->
+<!--            tools:ignore="HardcodedText" />-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/textView14"-->
+<!--            android:layout_width="326dp"-->
+<!--            android:layout_height="100dp"-->
+<!--            android:layout_marginTop="12dp"-->
+<!--            android:background="@drawable/border"-->
+<!--            android:gravity="center"-->
+<!--            android:text="Avaliab"-->
+<!--            android:textSize="34sp"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintHorizontal_bias="0.505"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/textView15"-->
+<!--            tools:ignore="HardcodedText" />-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/textView15"-->
+<!--            android:layout_width="326dp"-->
+<!--            android:layout_height="100dp"-->
+<!--            android:layout_marginTop="16dp"-->
+<!--            android:background="@drawable/border"-->
+<!--            android:gravity="center"-->
+<!--            android:text="Avaliab"-->
+<!--            android:textSize="34sp"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintHorizontal_bias="0.494"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/textView10"-->
+<!--            tools:ignore="HardcodedText" />-->
+<!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+
+<!--</ScrollView>-->
