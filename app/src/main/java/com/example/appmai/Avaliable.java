@@ -9,15 +9,12 @@ import androidx.fragment.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
 public class Avaliable extends AppCompatActivity {
-    String EMAIL,PASSWORD;
+    String EMAIL,PASSWORD,XX_EMAIL;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,11 +24,10 @@ public class Avaliable extends AppCompatActivity {
     }
 
     public void bottomNavBar(){
-        BottomNavigationView adminPanelBottomViewNav;
-        adminPanelBottomViewNav = findViewById(R.id.adminPanelBottomViewNav);
+        BottomNavigationView userPanelBottomViewNav;
+        userPanelBottomViewNav = findViewById(R.id.userPanelBottomViewNav);
 
-
-        adminPanelBottomViewNav.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+        userPanelBottomViewNav.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int id = item.getItemId();
@@ -47,7 +43,7 @@ public class Avaliable extends AppCompatActivity {
                 return true;
             }
         });
-        adminPanelBottomViewNav.setSelectedItemId(R.id.nav_home);
+        userPanelBottomViewNav.setSelectedItemId(R.id.nav_home);
 
     }
 
@@ -57,19 +53,31 @@ public class Avaliable extends AppCompatActivity {
 
         Bundle bundle = new Bundle();
         bundle.putString("EMAILX",EMAIL);
+        bundle.putString("XX_EMAIL",XX_EMAIL);
         bundle.putString("PASSWORDX",PASSWORD);
         fragment.setArguments(bundle);
 
         if (flag){
-            ft.add(R.id.adminpanelContainer, fragment);
+            ft.add(R.id.userPanelContainer,fragment);
+
         }else {
-            ft.replace(R.id.adminpanelContainer,fragment);
+
+            ft.replace(R.id.userPanelContainer,fragment);
+//            ft.addToBackStack("null");
+
         }
         ft.commit();
     }
     public void get_email_password(){
         Intent intent = getIntent();
-        EMAIL = intent.getStringExtra("email");
+        String email = intent.getStringExtra("email");
+
+        if (email==null){
+            EMAIL = intent.getStringExtra("USER_EMAIL");
+        }else {
+            EMAIL = intent.getStringExtra("email");
+        }
+
         PASSWORD = intent.getStringExtra("password");
     }
 

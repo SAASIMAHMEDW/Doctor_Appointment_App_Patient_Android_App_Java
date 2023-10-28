@@ -1,17 +1,26 @@
 package com.example.appmai;
 
 public class Users {
-    String Name, Age,Email, Password, Hint,uid;
+    String Name, Age,Email, Password, Hint,Gender,uid;
 
     public Users() {
     }
 
-    public Users(String name, String age,String email, String password, String hint, String uid) {
+    public String getGender() {
+        return Gender;
+    }
+
+    public void setGender(String gender) {
+       Gender= gender;
+    }
+
+    public Users(String name, String age, String email, String password, String hint, String gender, String uid) {
         Name = name;
         Email = email;
         Password = password;
         Hint = hint;
         Age = age;
+        Gender = gender;
         this.uid = uid;
     }
 

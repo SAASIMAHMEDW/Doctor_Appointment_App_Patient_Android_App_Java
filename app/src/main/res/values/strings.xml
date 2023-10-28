@@ -37,4 +37,9 @@
     <string name="name12">Name</string>
     <string name="name13">Name</string>
     <string name="enter_age">Enter Age</string>
+    <string name="pass">Password</string>
+    <string name="take_appointment">Take Appointment</string>
+    <string name="gender">Gender</string>
+    <string name="age34">age</string>
+    <string name="update">Update</string>
 </resources>

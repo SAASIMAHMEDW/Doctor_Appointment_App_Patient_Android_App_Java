@@ -8,7 +8,7 @@
     tools:context=".Avaliable">
 
     <FrameLayout
-        android:id="@+id/adminpanelContainer"
+        android:id="@+id/userPanelContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
 
@@ -18,7 +18,7 @@
     <!--    android:layout_marginBottom="?attr/actionBarSize"-->
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/adminPanelBottomViewNav"
+        android:id="@+id/userPanelBottomViewNav"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

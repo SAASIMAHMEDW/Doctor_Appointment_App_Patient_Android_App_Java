@@ -20,13 +20,13 @@
         app:layout_constraintHorizontal_bias="0.458"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.519"
+        app:layout_constraintVertical_bias="0.432"
         tools:ignore="TextFields" />
 
     <EditText
         android:id="@+id/user_register_password"
         android:layout_width="280dp"
-        android:layout_height="65dp"
+        android:layout_height="63dp"
         android:autofillHints=""
         android:ems="10"
         android:hint="@string/passwordss"
@@ -37,7 +37,7 @@
         app:layout_constraintHorizontal_bias="0.458"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.627"
+        app:layout_constraintVertical_bias="0.528"
         tools:ignore="TextFields" />
 
     <Button
@@ -89,22 +89,23 @@
         android:id="@+id/user_register_password_hint"
         android:layout_width="280dp"
         android:layout_height="63dp"
+        android:autofillHints=""
         android:ems="10"
         android:hint="@string/hint"
         android:inputType="text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.458"
+        app:layout_constraintHorizontal_bias="0.473"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.745"
-        tools:ignore="TextFields"
-        android:autofillHints="" />
+        app:layout_constraintVertical_bias="0.624"
+        tools:ignore="TextFields" />
 
     <EditText
         android:id="@+id/user_register_age"
         android:layout_width="280dp"
         android:layout_height="63dp"
+        android:autofillHints=""
         android:ems="10"
         android:hint="@string/age"
         android:inputType="text"
@@ -113,21 +114,34 @@
         app:layout_constraintHorizontal_bias="0.458"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.402"
-        android:autofillHints="" />
+        app:layout_constraintVertical_bias="0.338" />
 
     <EditText
         android:id="@+id/user_register_name"
         android:layout_width="280dp"
         android:layout_height="63dp"
+        android:autofillHints=""
         android:ems="10"
         android:hint="@string/name2"
         android:inputType="text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.473"
+        app:layout_constraintHorizontal_bias="0.458"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.294"
-        android:autofillHints="" />
+        app:layout_constraintVertical_bias="0.244" />
+
+    <EditText
+        android:id="@+id/user_register_gender"
+        android:layout_width="280dp"
+        android:layout_height="63dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="Gender"
+        android:inputType="text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.717" />
 </androidx.constraintlayout.widget.ConstraintLayout>

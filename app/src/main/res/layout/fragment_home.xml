@@ -1,16 +1,203 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HomeFragment"
-    android:layout_marginTop="?attr/actionBarSize"
-    android:layout_marginBottom="?attr/actionBarSize">
+    android:layout_marginBottom="?attr/actionBarSize"
+    android:orientation="vertical"
+    android:visibility="visible"
+    tools:context=".HomeFragment">
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="HOME FRAGMENT" />
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="?attr/actionBarSize"
+       android:background="@color/AppPrimaryColorX"
+       android:orientation="horizontal">
+
+      <TextView
+          android:id="@+id/textView10"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_gravity="center"
+          android:layout_weight="1"
+          android:fontFamily="@font/alata"
+          android:gravity="center"
+          android:text="My Appoinment"
+          android:textSize="24sp"
+          android:textStyle="bold" />
+   </LinearLayout>
+
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:orientation="vertical">
+
+      <androidx.cardview.widget.CardView
+          android:layout_width="match_parent"
+          android:layout_height="420dp"
+          android:layout_marginLeft="20dp"
+          android:layout_marginTop="50dp"
+          android:layout_marginRight="20dp"
+          android:layout_marginBottom="20dp"
+          app:cardCornerRadius="20dp"
+          app:cardElevation="20dp"
+          app:contentPadding="20dp">
+
+         <LinearLayout
+             android:id="@+id/user_dont_have_appointment"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:gravity="center_horizontal|center_vertical"
+             android:orientation="vertical"
+             android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="229dp"
+                android:layout_height="180dp"
+                android:src="@drawable/hospital_no_patients" />
+
+            <TextView
+                android:id="@+id/textView19"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="30dp"
+                android:fontFamily="@font/alata"
+                android:text="You Dont Hane Any Appoinment yet"
+                android:textAlignment="center"
+                android:textSize="24sp" />
+
+         </LinearLayout>
+
+         <LinearLayout
+             android:id="@+id/user_handlig_appointment"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:orientation="vertical"
+             android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:orientation="horizontal">
+
+                  <TextView
+                      android:id="@+id/textView11"
+                      android:layout_width="wrap_content"
+                      android:layout_height="match_parent"
+                      android:fontFamily="@font/alata"
+                      android:text="Doctor Name"
+                      android:textSize="24sp"
+                      android:textStyle="bold" />
+
+                  <TextView
+                      android:id="@+id/home_doctor_name"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_margin="10dp"
+                      android:layout_weight="1"
+                      android:fontFamily="@font/alata"
+                      android:textSize="24sp" />
+               </LinearLayout>
+
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:orientation="horizontal">
+
+                  <TextView
+                      android:id="@+id/textView13"
+                      android:layout_width="wrap_content"
+                      android:layout_height="match_parent"
+                      android:fontFamily="@font/alata"
+                      android:text="Phone No."
+                      android:textSize="24sp"
+                      android:textStyle="bold" />
+
+                  <TextView
+                      android:id="@+id/home_doctor_phoneno"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_margin="10dp"
+                      android:layout_weight="1"
+                      android:fontFamily="@font/alata"
+                      android:textSize="24sp" />
+               </LinearLayout>
+
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:orientation="horizontal">
+
+                  <TextView
+                      android:id="@+id/textView15"
+                      android:layout_width="wrap_content"
+                      android:layout_height="match_parent"
+                      android:fontFamily="@font/alata"
+                      android:text="Email"
+                      android:textSize="24sp"
+                      android:textStyle="bold" />
+
+                  <TextView
+                      android:id="@+id/home_doctor_email"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_margin="10dp"
+                      android:layout_weight="1"
+                      android:fontFamily="@font/alata"
+                      android:textSize="24sp" />
+               </LinearLayout>
+
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:orientation="vertical">
+
+                  <View
+                      android:id="@+id/divider"
+                      android:layout_width="match_parent"
+                      android:layout_height="1dp"
+                      android:layout_marginTop="20dp"
+                      android:background="?android:attr/listDivider" />
+
+                  <TextView
+                      android:id="@+id/textView18"
+                      android:layout_width="wrap_content"
+                      android:layout_height="match_parent"
+                      android:layout_margin="10dp"
+                      android:fontFamily="@font/alata"
+                      android:text="Your Problem"
+                      android:textSize="24sp"
+                      android:textStyle="bold" />
+
+                  <TextView
+                      android:id="@+id/home_problem_area"
+                      android:layout_width="match_parent"
+                      android:layout_height="100dp"
+                      android:layout_marginLeft="10dp"
+                      android:layout_weight="1"
+                      android:ems="10"
+                      android:textSize="20sp" />
+
+               </LinearLayout>
+
+            </LinearLayout>
+
+         </LinearLayout>
+
+      </androidx.cardview.widget.CardView>
+
+      <androidx.recyclerview.widget.RecyclerView
+          android:id="@+id/recycleview"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:visibility="gone" />
+   </LinearLayout>
+
 </LinearLayout>

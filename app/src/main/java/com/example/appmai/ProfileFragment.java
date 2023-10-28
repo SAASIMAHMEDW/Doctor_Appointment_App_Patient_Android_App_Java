@@ -5,17 +5,26 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.os.Handler;
+import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 
 public class ProfileFragment extends Fragment {
 
 
-    String EMAIL,PASSWORD;
+    String EMAIL,PASSWORD,NAME,AGE,PASSWORD_HINT,GENDER;
+
+    EditText editName,editEmail,editAge,editPassword,editGender,editHint;
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -26,7 +35,8 @@ public class ProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
         get_bundle_data();
-        setEMAIL(view);
+        setProfile(view);
+        getUser_Info();
 
         Button edit; Button update;
         edit = view.findViewById(R.id.Edit_btn);
@@ -54,15 +64,27 @@ public class ProfileFragment extends Fragment {
         PASSWORD=  b.getString("PASSWORDX");
     }
 
-    public void setEMAIL(View view){
-        EditText emailET;
+    public void setProfile(View view){
+        EditText emailET,passwordET;
         emailET = view.findViewById(R.id.Profile_user_Email);
         emailET.setHint(EMAIL);
+        passwordET = view.findViewById(R.id.Profile_user_password);
+        passwordET.setHint(PASSWORD);
+
+        editName = view.findViewById(R.id.Profile_user_name);
+        editEmail = view.findViewById(R.id.Profile_user_Email);
+        editAge=view.findViewById(R.id.Profile_user_age);
+        editPassword=view.findViewById(R.id.Profile_user_password);
+        editGender=view.findViewById(R.id.Profile_user_gender);
+        editHint=view.findViewById(R.id.Profile_user_hint);
+
+        editPassword.setHint(PASSWORD);
+        editEmail.setHint(EMAIL);
 
     }
     public void edit_profile(View view){
         Button edit; Button update;
-        EditText editName,editEmail,editAge,editPassword,editGender,editHint;
+
         edit = view.findViewById(R.id.Edit_btn);
         update = view.findViewById(R.id.update_btn);
 
@@ -90,12 +112,14 @@ public class ProfileFragment extends Fragment {
         edit = view.findViewById(R.id.Edit_btn);
         update = view.findViewById(R.id.update_btn);
 
-                editName = view.findViewById(R.id.Profile_user_name);
-                editEmail = view.findViewById(R.id.Profile_user_Email);
-                editAge=view.findViewById(R.id.Profile_user_age);
-                editPassword=view.findViewById(R.id.Profile_user_password);
-                editGender=view.findViewById(R.id.Profile_user_gender);
-                editHint=view.findViewById(R.id.Profile_user_hint);
+        editName = view.findViewById(R.id.Profile_user_name);
+        editEmail = view.findViewById(R.id.Profile_user_Email);
+        editAge=view.findViewById(R.id.Profile_user_age);
+        editPassword=view.findViewById(R.id.Profile_user_password);
+        editGender=view.findViewById(R.id.Profile_user_gender);
+        editHint=view.findViewById(R.id.Profile_user_hint);
+
+
 
                 editName.setEnabled(false);
                 editAge.setEnabled(false);
@@ -104,8 +128,38 @@ public class ProfileFragment extends Fragment {
                 editEmail.setEnabled(false);
                 editHint.setEnabled(false);
 
+
                 edit.setVisibility(View.VISIBLE);
                 update.setVisibility(View.GONE);
 
+    }
+    public void getUser_Info(){
+        FirebaseFirestore fb = FirebaseFirestore.getInstance();
+        DocumentReference dr =fb.collection("USERS").document(EMAIL).collection(EMAIL).document("PROFILE");
+        dr.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                NAME = documentSnapshot.get("name").toString();
+                AGE = documentSnapshot.get("age").toString();
+                PASSWORD_HINT = documentSnapshot.get("hint").toString();
+                GENDER = documentSnapshot.get("gender").toString();
+                editAge.setHint(AGE);
+                editName.setHint(NAME);
+                editGender.setHint(GENDER);
+                editHint.setHint(PASSWORD_HINT);
+            }
+        });
+
+    }
+
+    public void delay(View view){
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                setProfile(view);
+            }
+        };
+        Handler handler = new Handler(Looper.myLooper());
+        handler.postDelayed(runnable,2000);
     }
 }

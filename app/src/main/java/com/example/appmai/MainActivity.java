@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
     public void goto_Signup() {
         Intent intent = new Intent(getApplicationContext(), SignUpapp.class);
         startActivity(intent);
-        finish();
+        //finish();
 
     }
 
