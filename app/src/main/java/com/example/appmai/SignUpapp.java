@@ -70,7 +70,7 @@ public class SignUpapp extends AppCompatActivity {
         String uid = fb.collection("USERS").document().collection(name).document().getId();
         Users user = new Users(name,age,email,password,password_hint,gender,uid);
         DocumentReference DR = fb.collection("USERS").document(email).collection(email).document("APPOINTMENT");
-        UserAppointmentModel data = new UserAppointmentModel("NULL","NULL","NULL","NULL");
+        UserAppointmentModel data = new UserAppointmentModel("NULL","NULL","NULL","NULL","NULL");
         DR.set(data);
         fb.collection("USERS").document(email).collection(email).document("PROFILE").set(user).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override

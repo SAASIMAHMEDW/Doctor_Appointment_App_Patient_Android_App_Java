@@ -14,6 +14,7 @@ import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -29,9 +30,10 @@ public class HomeFragment extends Fragment {
 
     LinearLayout user_dont_have_appointment,user_handlig_appointment;
     TextView home_doctor_name,home_doctor_phoneno,home_doctor_email,home_problem_area;
+    Button home_patient_appointment_status;
 
     String EMAIL,PASSWORD;
-    String APPOINTMENT_NAME,APPOINTMENT_EMAIL,APPOINTMENT_PHONE,APPOINTMENT_PROBLEM;
+    String APPOINTMENT_NAME,APPOINTMENT_EMAIL,APPOINTMENT_PHONE,APPOINTMENT_PROBLEM,APPOINTMENT_STATUS;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -55,6 +57,8 @@ public class HomeFragment extends Fragment {
         home_doctor_phoneno = view.findViewById(R.id.home_doctor_phoneno);
         home_doctor_email = view.findViewById(R.id.home_doctor_email);
         home_problem_area = view.findViewById(R.id.home_problem_area);
+        home_patient_appointment_status = view.findViewById(R.id.home_patient_appointment_status);
+
     }
 
 
@@ -91,11 +95,8 @@ public class HomeFragment extends Fragment {
                 APPOINTMENT_EMAIL = documentSnapshot.get("email").toString();
                 APPOINTMENT_PHONE = documentSnapshot.get("phoneno").toString();
                 APPOINTMENT_PROBLEM = documentSnapshot.get("problem").toString();
-                if (APPOINTMENT_NAME.equals("NULL")){
-                    handle_visibility(false);
-                }else {
-                    handle_visibility(true);
-                }
+                APPOINTMENT_STATUS = documentSnapshot.get("status").toString();
+                handle_visibility(!APPOINTMENT_NAME.equals("NULL"));
 
             }
         });
@@ -109,6 +110,7 @@ public class HomeFragment extends Fragment {
             home_doctor_email.setText(APPOINTMENT_EMAIL);
             home_doctor_phoneno.setText(APPOINTMENT_PHONE);
             home_problem_area.setText(APPOINTMENT_PROBLEM);
+            home_patient_appointment_status.setText(APPOINTMENT_STATUS);
 
         }else {
             user_dont_have_appointment.setVisibility(View.VISIBLE);

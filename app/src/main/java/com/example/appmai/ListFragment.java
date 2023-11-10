@@ -17,6 +17,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,10 +37,13 @@ import java.util.Objects;
 
 public class  ListFragment extends Fragment implements view_more_interface_of_recyler_view {
 
+    int totalDoctors;
     String EMAIL,PASSWORD;
 
     ArrayList<String []> doctor_data;
     ProgressBar load;
+    LinearLayout No_Doctor_Available_Layout;
+    RecyclerView recycleview;
 
     List<Home_info> items;
 
@@ -50,17 +54,26 @@ public class  ListFragment extends Fragment implements view_more_interface_of_re
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_list, container, false);
-       load = view.findViewById(R.id.prog_bar1);
-       load.setVisibility(View.VISIBLE);
+        find_views_by_ids(view);
+        recycleview.setVisibility(View.VISIBLE);
+        load.setVisibility(View.VISIBLE);
         get_bundle_data();
 //        get_doctor_data_from_realtime_dbx();
-        get_doctor_data_from_realtime_db();
+        get_total_doctor_number();
+        get_doctor_data_from_realtime_db_delayed();
 //        doctor_recycler_view_data(view);
         doctor_available_recyler_view_delayed(view);
 
 
         // Inflate the layout for this fragment
         return view;
+
+    }
+
+    public void find_views_by_ids(View view){
+        recycleview = view.findViewById(R.id.recycleview);
+        No_Doctor_Available_Layout = view.findViewById(R.id.No_Doctor_Available_Layout);
+        load = view.findViewById(R.id.prog_bar1);
 
     }
 
@@ -72,13 +85,12 @@ public class  ListFragment extends Fragment implements view_more_interface_of_re
             }
         };
         Handler handler = new Handler(Looper.myLooper());
-        handler.postDelayed(runnable,6000);
+        handler.postDelayed(runnable,8000);
     }
 
     public void doctor_recycler_view_data(View view){
-        RecyclerView recyclerView = view.findViewById(R.id.recycleview);
-
-        items = new ArrayList<Home_info>();
+//        RecyclerView recyclerView = view.findViewById(R.id.recycleview);
+        items = new ArrayList<>();
 
         for (String[] data:doctor_data) {
         items.add(new Home_info(data[0].toString(),data[1].toString()));
@@ -89,34 +101,85 @@ public class  ListFragment extends Fragment implements view_more_interface_of_re
 //        items.add(new Home_info("vvv"));
 //        items.add(new Home_info("ddd"));
 //        items.add(new Home_info("sss"));
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
-        recyclerView.setAdapter(new MyAdopter((getActivity().getApplicationContext()),items,this));
+        recycleview.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
+        recycleview.setAdapter(new MyAdopter((getActivity().getApplicationContext()),items,this));
 
     }
 
+    public void get_total_doctor_number(){
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("ADMINS ROOT");
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                totalDoctors = (int)snapshot.getChildrenCount();
+//                Toast.makeText(getContext().getApplicationContext(),Integer.toString(totalDoctors), Toast.LENGTH_SHORT).show();
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    public void get_doctor_data_from_realtime_db_delayed(){
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                get_doctor_data_from_realtime_db();
+            }
+        };
+        Handler handler = new Handler(Looper.myLooper());
+        handler.postDelayed(runnable,3000);
+    }
+
     public void get_doctor_data_from_realtime_db(){
+
         doctor_data = new ArrayList<>();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("ADMINS ROOT");
+//        DatabaseReference myRefX = database.getReference();
         load.setVisibility(View.VISIBLE);
         myRef.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 String email, status, name;
                 status = snapshot.child("status").getValue().toString();
+//                Toast.makeText(getContext().getApplicationContext(), Integer.toString(totalDoctors), Toast.LENGTH_SHORT).show();
+                int notAvailableCount=0;
+                if (totalDoctors==0){
+                    recycleview.setVisibility(View.GONE);
+                    No_Doctor_Available_Layout.setVisibility(View.VISIBLE);
+                }
                 if (status.equals("Available")){
                     email = snapshot.child("email").getValue().toString();
                     name = snapshot.child("name").getValue().toString();
                     String data[] = {name,email,status};
                     load.setVisibility(View.GONE);
-
                     doctor_data.add(data);
+                }else {
+                    notAvailableCount++;
+                    if (notAvailableCount == totalDoctors){
+                        recycleview.setVisibility(View.GONE);
+                        No_Doctor_Available_Layout.setVisibility(View.VISIBLE);
+                    }
                 }
 
             }
 
             @Override
             public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+//                String email, status, name;
+//                status = snapshot.child("status").getValue().toString();
+//                if (status.equals("Available")){
+//                    email = snapshot.child("email").getValue().toString();
+//                    name = snapshot.child("name").getValue().toString();
+//                    String data[] = {name,email,status};
+////                    load.setVisibility(View.GONE);
+//                    doctor_data.add(data);
+//                doctor_available_recyler_view_delayed()
+//                }
 
             }
 

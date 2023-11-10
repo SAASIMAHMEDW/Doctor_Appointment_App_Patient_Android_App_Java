@@ -159,7 +159,7 @@ public class MakeAppointmentActivity extends AppCompatActivity {
         DocumentReference DR = db.collection("USERS").document(USER_EMAIL).collection(USER_EMAIL).document("APPOINTMENT");
         MakeAppointmentDataModel data = new MakeAppointmentDataModel(DOC_NAME,DOC_EMAIL,DOC_PHONENO,USER_PROBLEM);
 //        DR.set(data);
-        DR.update("name",DOC_NAME,"email",DOC_EMAIL,"phoneno",DOC_PHONENO,"problem",USER_PROBLEM);
+        DR.update("name",DOC_NAME,"email",DOC_EMAIL,"phoneno",DOC_PHONENO,"problem",USER_PROBLEM,"status","pending");
     }
 
 }

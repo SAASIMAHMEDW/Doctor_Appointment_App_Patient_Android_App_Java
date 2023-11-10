@@ -22,6 +22,7 @@
     <string name="signups">SignUp</string>
     <string name="todo">TODO</string>
     <string name="appointment">APPOINTMENT</string>
+    <string name="patients_appointment_splash_screen">PATIENT APP</string>
     <string name="avaliable">Avaliable</string>
     <string name="avaliab">Avaliab</string>
     <string name="age">Age</string>

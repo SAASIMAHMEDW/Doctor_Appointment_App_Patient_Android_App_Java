@@ -141,11 +141,13 @@ public class ProfileFragment extends Fragment {
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 NAME = documentSnapshot.get("name").toString();
                 AGE = documentSnapshot.get("age").toString();
+                PASSWORD = documentSnapshot.get("password").toString();
                 PASSWORD_HINT = documentSnapshot.get("hint").toString();
                 GENDER = documentSnapshot.get("gender").toString();
                 editAge.setHint(AGE);
                 editName.setHint(NAME);
                 editGender.setHint(GENDER);
+                editPassword.setHint(PASSWORD);
                 editHint.setHint(PASSWORD_HINT);
             }
         });

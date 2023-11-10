@@ -35,9 +35,9 @@
 
       <androidx.cardview.widget.CardView
           android:layout_width="match_parent"
-          android:layout_height="420dp"
+          android:layout_height="440dp"
           android:layout_marginLeft="20dp"
-          android:layout_marginTop="50dp"
+          android:layout_marginTop="80dp"
           android:layout_marginRight="20dp"
           android:layout_marginBottom="20dp"
           app:cardCornerRadius="20dp"
@@ -64,7 +64,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="30dp"
                 android:fontFamily="@font/alata"
-                android:text="You Dont Hane Any Appoinment yet"
+                android:text="You Dont Have Any Appoinment yet"
                 android:textAlignment="center"
                 android:textSize="24sp" />
 
@@ -185,6 +185,22 @@
                       android:ems="10"
                       android:textSize="20sp" />
 
+               </LinearLayout>
+
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:orientation="vertical">
+
+                  <Button
+                      android:id="@+id/home_patient_appointment_status"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_gravity="right"
+                      android:backgroundTint="@color/black"
+                      android:clickable="false"
+                      android:text="STATUS"
+                      android:textColor="@color/white" />
                </LinearLayout>
 
             </LinearLayout>

@@ -33,13 +33,12 @@ public class Avaliable extends AppCompatActivity {
                 int id = item.getItemId();
 
                 if (id == R.id.nav_home){
-                    fragmentLoader(new HomeFragment(),true);
+                    fragmentLoader(new HomeFragment(),false);
                 }else if (id == R.id.nav_list){
                     fragmentLoader(new ListFragment(),false);
                 }else {
                     fragmentLoader(new ProfileFragment(),false);
                 }
-
                 return true;
             }
         });
@@ -59,12 +58,9 @@ public class Avaliable extends AppCompatActivity {
 
         if (flag){
             ft.add(R.id.userPanelContainer,fragment);
-
         }else {
-
             ft.replace(R.id.userPanelContainer,fragment);
 //            ft.addToBackStack("null");
-
         }
         ft.commit();
     }
