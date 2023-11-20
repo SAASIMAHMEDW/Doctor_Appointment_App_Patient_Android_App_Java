@@ -47,13 +47,12 @@ public class ViewActivity extends AppCompatActivity {
 //                Toast.makeText(ViewActivity.this, "Clicked", Toast.LENGTH_SHORT).show();
             }
         });
-
-
     }
 
     public void go_make_appointment(){
         Intent intent = new Intent(ViewActivity.this,MakeAppointmentActivity.class);
         intent.putExtra("DOC_EMAIL",DOC_EMAIL);
+        intent.putExtra("DOC_NAME",DOC_NAME);
         intent.putExtra("USER_EMAIL",USER_EMAIL);
         startActivity(intent);
     }

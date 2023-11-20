@@ -14,6 +14,10 @@ public class UserAppointmentModel {
         this.problem = problem;
     }
 
+    public UserAppointmentModel(String status) {
+        this.status = status;
+    }
+
     public UserAppointmentModel(String name, String email, String phoneno, String problem, String status) {
         this.name = name;
         this.email = email;

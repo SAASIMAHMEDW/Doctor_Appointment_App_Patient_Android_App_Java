@@ -6,7 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
-    android:layout_marginBottom="?attr/actionBarSize"
     android:orientation="vertical"
     tools:context=".ProfileFragment">
 
@@ -29,12 +28,11 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:ignore="UselessParent">
+        android:layout_height="match_parent">
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_margin="10dp"
             app:cardBackgroundColor="#FFFFFF"
             app:cardCornerRadius="10dp"
@@ -44,6 +42,7 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
                 android:orientation="vertical">
 
                 <LinearLayout
@@ -278,38 +277,55 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="50dp"
-                        android:layout_marginRight="50dp"
                         app:cardCornerRadius="10dp"
-                        app:cardElevation="20dp">
+                        app:contentPadding="10dp">
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:background="@color/AppSecondaryColorX"
                             android:orientation="vertical">
 
-                            <Button
-                                android:id="@+id/Edit_btn"
+                            <LinearLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:backgroundTint="@color/AppSecondaryColorX"
-                                android:fontFamily="@font/alata"
-                                android:text="Edit"
-                                android:textSize="24sp"
-                                tools:ignore="HardcodedText,TextContrastCheck,VisualLintButtonSize" />
+                                android:layout_height="match_parent"
+                                android:orientation="horizontal">
 
-                            <Button
-                                android:id="@+id/update_btn"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:backgroundTint="@color/AppSecondaryColorX"
-                                android:cursorVisible="false"
-                                android:text="@string/update"
-                                android:textColor="#FFFFFF"
-                                android:textSize="24sp"
-                                android:visibility="gone"
-                                tools:ignore="TextViewEdits" />
+                                <Button
+                                    android:id="@+id/user_logout_button"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="10dp"
+                                    android:layout_weight="1"
+                                    android:backgroundTint="@color/black"
+                                    android:fontFamily="@font/alata"
+                                    android:text="Logout"
+                                    android:textSize="24sp" />
+
+                                <Button
+                                    android:id="@+id/Edit_btn"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="10dp"
+                                    android:layout_weight="1"
+                                    android:backgroundTint="@color/black"
+                                    android:fontFamily="@font/alata"
+                                    android:text="Edit"
+                                    android:textSize="24sp"
+                                    tools:ignore="HardcodedText,TextContrastCheck,VisualLintButtonSize" />
+
+                                <Button
+                                    android:id="@+id/update_btn"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:backgroundTint="@color/AppSecondaryColorX"
+                                    android:cursorVisible="false"
+                                    android:text="@string/update"
+                                    android:textColor="#FFFFFF"
+                                    android:textSize="24sp"
+                                    android:visibility="gone"
+                                    tools:ignore="TextViewEdits" />
+                            </LinearLayout>
+
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
                 </LinearLayout>

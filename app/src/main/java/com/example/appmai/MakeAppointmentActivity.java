@@ -33,9 +33,12 @@ public class MakeAppointmentActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_make_appointment);
         get_intent_data();
+//        get_intent_data();
         find_views_by_ids();
-        getUser_Info();
-        get_DOCTOR_Info();
+//        find_views_by_ids();
+        new Thread(() -> getUser_Info()).start();
+//        getUser_Info();
+//        get_DOCTOR_Info();
 
         Make_The_Appointment_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,6 +57,7 @@ public class MakeAppointmentActivity extends AppCompatActivity {
     public void get_intent_data(){
         Intent intent = getIntent();
         DOC_EMAIL=  intent.getStringExtra("DOC_EMAIL");
+        DOC_NAME=  intent.getStringExtra("DOC_NAME");
         USER_EMAIL= intent.getStringExtra("USER_EMAIL");
 
     }
@@ -85,7 +89,7 @@ public class MakeAppointmentActivity extends AppCompatActivity {
             }
         };
         Handler handler = new Handler(Looper.myLooper());
-        handler.postDelayed(runnable,3500);
+        handler.postDelayed(runnable,2000);
     }
 
     public void setUser_request_in_doctor(){
@@ -98,7 +102,9 @@ public class MakeAppointmentActivity extends AppCompatActivity {
             @Override
             public void onSuccess(Void unused) {
                 clear_text_area();
-                update_user_appointment();
+                new Thread(() -> update_user_appointment()).start();
+                new Thread(() -> update_user_notification()).start();
+//                update_user_appointment();
                 set_delayed_home();
             }
         });
@@ -136,7 +142,7 @@ public class MakeAppointmentActivity extends AppCompatActivity {
             }
         };
         Handler handler = new Handler(Looper.myLooper());
-        handler.postDelayed(runnable,2000);
+        handler.postDelayed(runnable,1500);
     }
 
     public void clear_text_area(){
@@ -153,13 +159,18 @@ public class MakeAppointmentActivity extends AppCompatActivity {
             }
         });
     }
-
     public void update_user_appointment(){
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         DocumentReference DR = db.collection("USERS").document(USER_EMAIL).collection(USER_EMAIL).document("APPOINTMENT");
         MakeAppointmentDataModel data = new MakeAppointmentDataModel(DOC_NAME,DOC_EMAIL,DOC_PHONENO,USER_PROBLEM);
 //        DR.set(data);
         DR.update("name",DOC_NAME,"email",DOC_EMAIL,"phoneno",DOC_PHONENO,"problem",USER_PROBLEM,"status","pending");
+    }
+    public void update_user_notification(){
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        DocumentReference NOTIFICATION_DR =db.collection("USERS").document(USER_EMAIL).collection(USER_EMAIL).document(USER_EMAIL).collection("NOTIFICATION").document("APPOINTMENT STATUS NOTIFICATION");
+//        DocumentReference NOTIFICATION_DR = db.collection("USERS").document(USER_EMAIL).collection(USER_EMAIL).document("NOTIFICATION");
+        NOTIFICATION_DR.update("status","pending");
     }
 
 }

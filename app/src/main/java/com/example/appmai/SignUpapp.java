@@ -16,8 +16,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
 
 
 public class SignUpapp extends AppCompatActivity {
@@ -71,6 +74,17 @@ public class SignUpapp extends AppCompatActivity {
         Users user = new Users(name,age,email,password,password_hint,gender,uid);
         DocumentReference DR = fb.collection("USERS").document(email).collection(email).document("APPOINTMENT");
         UserAppointmentModel data = new UserAppointmentModel("NULL","NULL","NULL","NULL","NULL");
+
+//        DocumentReference DR_NOTI = fb.collection("USERS").document(email).collection(email).document("NOTIFICATION");
+//        HashMap<String,String> notification_map = new HashMap<>();
+//        notification_map.put("status","pending");
+//        DR_NOTI.set(notification_map);
+
+        DocumentReference DR_NOTI = fb.collection("USERS").document(email).collection(email).document(email).collection("NOTIFICATION").document("APPOINTMENT STATUS NOTIFICATION");
+        HashMap<String,String> notification_map = new HashMap<>();
+        notification_map.put("status","NULL");
+        DR_NOTI.set(notification_map);
+
         DR.set(data);
         fb.collection("USERS").document(email).collection(email).document("PROFILE").set(user).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override

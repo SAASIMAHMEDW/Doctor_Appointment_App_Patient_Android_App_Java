@@ -101,8 +101,8 @@ public class  ListFragment extends Fragment implements view_more_interface_of_re
 //        items.add(new Home_info("vvv"));
 //        items.add(new Home_info("ddd"));
 //        items.add(new Home_info("sss"));
-        recycleview.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
-        recycleview.setAdapter(new MyAdopter((getActivity().getApplicationContext()),items,this));
+        recycleview.setLayoutManager(new LinearLayoutManager(requireActivity().getApplicationContext()));
+        recycleview.setAdapter(new MyAdopter((requireActivity().getApplicationContext()),items,this));
 
     }
 

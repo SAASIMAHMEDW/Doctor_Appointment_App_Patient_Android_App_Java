@@ -17,8 +17,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -27,7 +30,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HomeFragment extends Fragment {
-
+    String NOTIFICATION_STATUS=null;
     LinearLayout user_dont_have_appointment,user_handlig_appointment;
     TextView home_doctor_name,home_doctor_phoneno,home_doctor_email,home_problem_area;
     Button home_patient_appointment_status;
@@ -47,7 +50,40 @@ public class HomeFragment extends Fragment {
         get_bundle_data();
         find_views_by_ids(view);
         delay();
+        new Thread(this::getNotificationStatus).start();
+//        getNotificationStatus_thread();
+//        Toast.makeText(getContext().getApplicationContext(), "test", Toast.LENGTH_SHORT).show();
+//        new Thread(this::getNotificationStatus).start();
         return view;
+    }
+    public void getNotificationStatus_thread(){
+        Thread thread = new Thread(){
+            public void run(){
+                try {
+                    sleep(2000);
+                } catch (InterruptedException ignored) {}
+                finally {getNotificationStatus();}
+            }
+        };thread.start();
+    }
+
+    public void getNotificationStatus(){
+        FirebaseFirestore fb = FirebaseFirestore.getInstance();
+        CollectionReference NOTIFICATION_STATUS_CR = fb.collection("USERS").document(EMAIL).collection(EMAIL).document(EMAIL).collection("NOTIFICATION");
+        NOTIFICATION_STATUS_CR.addSnapshotListener((value, error) -> {
+            if (error != null) {
+                // Handle error
+                return;
+            }
+            // Update TextView with data from the collection
+            assert value != null;
+            for (DocumentChange dc : value.getDocumentChanges()) {
+                APPOINTMENT_STATUS = dc.getDocument().getString("status");
+                if (!APPOINTMENT_STATUS.equals("NULL"))
+                    home_patient_appointment_status.setText(APPOINTMENT_STATUS);
+
+            }
+        });
     }
 
     public void find_views_by_ids(View view){
@@ -95,11 +131,23 @@ public class HomeFragment extends Fragment {
                 APPOINTMENT_EMAIL = documentSnapshot.get("email").toString();
                 APPOINTMENT_PHONE = documentSnapshot.get("phoneno").toString();
                 APPOINTMENT_PROBLEM = documentSnapshot.get("problem").toString();
-                APPOINTMENT_STATUS = documentSnapshot.get("status").toString();
+//                APPOINTMENT_STATUS = documentSnapshot.get("status").toString();
                 handle_visibility(!APPOINTMENT_NAME.equals("NULL"));
 
             }
         });
+    }
+
+    public void getPatientsAppointmentStatus(){
+        FirebaseFirestore fb = FirebaseFirestore.getInstance();
+        DocumentReference NOTIFICATION_DR =fb.collection("USERS").document(EMAIL).collection(EMAIL).document(EMAIL).collection("NOTIFICATION").document("APPOINTMENT STATUS NOTIFICATION");
+        NOTIFICATION_DR.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                APPOINTMENT_STATUS = documentSnapshot.get("status").toString();
+            }
+        });
+
     }
 
     public void handle_visibility(boolean flag){
