@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".PatientsRegisterActivity">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="73dp"
+            android:layout_gravity="center"
+            android:fontFamily="@font/alata"
+            android:text="@string/signups"
+            android:textColor="@color/AppPrimaryColorX"
+            android:textSize="48sp"
+            android:textStyle="bold"
+            tools:ignore="TextSizeCheck,TextContrastCheck" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="-20dp"
+            android:fontFamily="@font/alata"
+            android:text="@string/users"
+            android:textSize="60sp" />
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <EditText
+                    android:id="@+id/user_register_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:autofillHints=""
+                    android:ems="10"
+                    android:fontFamily="@font/alata"
+                    android:hint="@string/name2"
+                    android:inputType="text"
+                    android:padding="10dp"
+                    android:textColorHint="@color/AppThirdColorX" />
+
+                <EditText
+                    android:id="@+id/user_register_age"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:autofillHints=""
+                    android:ems="10"
+                    android:fontFamily="@font/alata"
+                    android:hint="@string/age"
+                    android:inputType="number"
+                    android:padding="10dp"
+                    android:textColorHint="@color/AppThirdColorX" />
+
+                <EditText
+                    android:id="@+id/user_register_gender"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:autofillHints=""
+                    android:ems="10"
+                    android:fontFamily="@font/alata"
+                    android:hint="Gender"
+                    android:inputType="text"
+                    android:padding="10dp"
+                    android:textColorHint="@color/AppThirdColorX" />
+
+                <EditText
+                    android:id="@+id/user_register_phoneNo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:ems="10"
+                    android:hint="Phone No."
+                    android:inputType="text"
+                    android:minHeight="48dp"
+                    android:padding="10dp"
+                    android:textColorHint="@color/AppThirdColorX" />
+
+                <EditText
+                    android:id="@+id/user_register_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:autofillHints=""
+                    android:ems="10"
+                    android:fontFamily="@font/alata"
+                    android:hint="@string/emailsig"
+                    android:inputType="text"
+                    android:padding="10dp"
+                    android:textColorHint="@color/AppThirdColorX"
+                    tools:ignore="TextFields" />
+
+                <EditText
+                    android:id="@+id/user_register_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:autofillHints=""
+                    android:ems="10"
+                    android:fontFamily="@font/alata"
+                    android:hint="@string/passwordss"
+                    android:inputType="text"
+                    android:padding="10dp"
+                    android:textColorHint="@color/AppThirdColorX"
+                    tools:ignore="TextFields" />
+
+                <EditText
+                    android:id="@+id/user_register_password_hint"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:autofillHints=""
+                    android:ems="10"
+                    android:fontFamily="@font/alata"
+                    android:hint="@string/hint"
+                    android:inputType="text"
+                    android:padding="10dp"
+                    android:textColorHint="@color/AppThirdColorX"
+                    tools:ignore="TextFields" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight=".9"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/textView32"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/alata"
+                            android:text="Profile Picture"
+                            android:textSize="25sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/alata"
+                            android:text="Click Image to upload"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+                    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:id="@+id/register_user_profile_pic"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_gravity="end"
+                        android:layout_weight=".8"
+                        android:clickable="true"
+                        android:src="@drawable/nav_profile"
+                        app:civ_border_color="#FF000000"
+                        app:civ_border_width="2dp" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ProgressBar
+                    android:id="@+id/signup_button_progress_bar"
+                    style="@android:style/Widget.Holo.Light.ProgressBar.Large.Inverse"
+                    android:layout_width="125dp"
+                    android:layout_height="89dp"
+                    android:visibility="gone" />
+
+                <Button
+                    android:id="@+id/user_register_signupBTN"
+                    android:layout_width="278dp"
+                    android:layout_height="67dp"
+                    android:layout_margin="10dp"
+                    android:backgroundTint="@color/AppSecondaryColorX"
+                    android:fontFamily="@font/alata"
+                    android:padding="10dp"
+                    android:text="@string/signup"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    tools:ignore="TextContrastCheck" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="20dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="bottom|center_horizontal"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textView30"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/alata"
+                        android:text="Presented By"
+                        android:textColor="@color/AppThirdColorX"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/textView31"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/alata"
+                        android:text="Team Code Craft"
+                        android:textColor="@color/AppThirdColorX"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

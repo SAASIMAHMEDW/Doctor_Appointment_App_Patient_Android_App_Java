@@ -20,16 +20,16 @@
             android:name=".ViewActivity"
             android:exported="false" />
         <activity
-            android:name=".Avaliable"
+            android:name=".MainPanel"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".PatientsLoginActivity"
             android:exported="false" />
         <activity
-            android:name=".SignUpapp"
+            android:name=".PatientsRegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".SplashScr"
+            android:name=".PatientsSplashScreenActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -42,7 +42,7 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
-        <service android:name=".NotificationStatusService"/>
+<!--        <service android:name=".NotificationStatusService"/>-->
     </application>
 
 </manifest>

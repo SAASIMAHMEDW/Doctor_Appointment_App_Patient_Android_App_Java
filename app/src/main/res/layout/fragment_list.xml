@@ -20,11 +20,11 @@
 
 
         <TextView
-            android:id="@+id/textView24"
+            android:id="@+id/Available_Doctor_List_TV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/alata"
-            android:text="Available List"
+            android:text="Available Doctor List"
             android:textSize="24sp"
             android:textStyle="bold" />
     </LinearLayout>
@@ -42,10 +42,22 @@
 
         <ProgressBar
             android:id="@+id/prog_bar1"
-            android:layout_width="233dp"
-            android:layout_height="186dp"
+            style="@android:style/Widget.Holo.Light.ProgressBar.Large.Inverse"
+            android:layout_width="247dp"
+            android:layout_height="268dp"
             android:layout_gravity="center"
-            android:layout_marginTop="-600dp"
+            android:layout_marginTop="80dp"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/loading_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/alata"
+            android:text="Loading Available Doctor(s)..."
+            android:textSize="20sp"
+            android:textStyle="bold"
             android:visibility="gone" />
 
         <LinearLayout

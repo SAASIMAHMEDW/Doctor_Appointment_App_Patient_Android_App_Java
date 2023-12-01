@@ -1,14 +1,12 @@
 package com.example.appmai;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.annotation.SuppressLint;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -22,19 +20,13 @@ import android.os.Looper;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentChange;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.QuerySnapshot;
 
-public class Avaliable extends AppCompatActivity {
+public class MainPanel extends AppCompatActivity {
     int COUNTER=0;
     String EMAIL,PASSWORD,XX_EMAIL;
     String NOTIFICATION_STATUS;
@@ -52,12 +44,12 @@ public class Avaliable extends AppCompatActivity {
 //        new Thread(this::repeat).start();
         new Thread(this::getNotificationStatus).start();
     }
-    public void statusNotificationService(){
-        Intent intent = new Intent(Avaliable.this, NotificationStatusService.class);
-        intent.putExtra("EMAIL_NOTI",EMAIL);
-        startService(intent);
-//        startService(new Intent(Avaliable.this,NotificationService.class));
-    }
+//    public void statusNotificationService(){
+//        Intent intent = new Intent(MainPanel.this, NotificationStatusService.class);
+//        intent.putExtra("EMAIL_NOTI",EMAIL);
+//        startService(intent);
+////        startService(new Intent(Avaliable.this,NotificationService.class));
+//    }
 //    public void repeat(){
 //
 //        final Handler handler = new Handler();
@@ -107,7 +99,7 @@ public class Avaliable extends AppCompatActivity {
         BitmapDrawable bitmapDrawable = (BitmapDrawable) drawable;
         Bitmap bitmap = bitmapDrawable.getBitmap();
         NotificationManager notificationManager = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
-        Notification notification = new Notification.Builder(Avaliable.this)
+        Notification notification = new Notification.Builder(MainPanel.this)
                 .setLargeIcon(bitmap)
                 .setSmallIcon(R.drawable.doctor_img_splashsscreen)
                 .setContentText(status)
@@ -163,7 +155,7 @@ public class Avaliable extends AppCompatActivity {
     public void get_email_password_intent(){
         Intent intent = getIntent();
         String email = intent.getStringExtra("email");
-        String Shared_email = intent.getStringExtra("EMAIL");
+        String Shared_email = intent.getStringExtra("SHARED_EMAIL_INTENT");
         String Shared_password = intent.getStringExtra("PASSWORD");
 
         if (Shared_email!=null){

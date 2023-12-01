@@ -28,7 +28,7 @@
     <string name="avaliab">Avaliab</string>
     <string name="age">Age</string>
     <string name="name2">Name</string>
-    <string name="hint">hint</string>
+    <string name="hint">Password Hint</string>
     <color name="AppPrimaryColorX">#FFC529</color>
     <color name="AppSecondaryColorX">#FE724C</color>
     <color name="AppThirdColorX">#D7D7D7</color>

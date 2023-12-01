@@ -1,6 +1,5 @@
 package com.example.appmai;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -10,11 +9,8 @@ import android.os.Looper;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -24,7 +20,7 @@ public class MakeAppointmentActivity extends AppCompatActivity {
 
     String DOC_EMAIL,DOC_NAME,DOC_PHONENO="9669966996";
 
-    String USER_EMAIL,USER_PROBLEM,USER_NAME;
+    String USER_EMAIL,USER_PROBLEM,USER_NAME,USER_GENDER,USER_PHONE_NO,USER_PROFILE_PIC_URL;
 
     EditText problem_arear;
     Button Make_The_Appointment_btn;
@@ -43,6 +39,7 @@ public class MakeAppointmentActivity extends AppCompatActivity {
         Make_The_Appointment_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+//                problem_arear.setEnabled(false);
                 get_text_view_data();
                 set_user_request_delayed();
 
@@ -74,6 +71,9 @@ public class MakeAppointmentActivity extends AppCompatActivity {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 USER_NAME = documentSnapshot.get("name").toString();
+                USER_GENDER = documentSnapshot.get("gender").toString();
+                USER_PHONE_NO = documentSnapshot.get("phone_no").toString();
+                USER_PROFILE_PIC_URL = documentSnapshot.get("profile_pic_URL").toString();
             }
         });
     }
@@ -108,26 +108,10 @@ public class MakeAppointmentActivity extends AppCompatActivity {
                 set_delayed_home();
             }
         });
-//        CR.add(data).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-//            @Override
-//            public void onSuccess(DocumentReference documentReference) {
-//                clear_text_area();
-//                update_user_appointment();
-//                set_delayed_home();
-//            }
-//        });
-//        CR.set(data).addOnSuccessListener(new OnSuccessListener<Void>() {
-//            @Override
-//            public void onSuccess(Void unused) {
-//                clear_text_area();
-//                update_user_appointment();
-//                set_delayed_home();
-//            }
-//        });
     }
 
     public void go_Home(){
-        Intent intent = new Intent(MakeAppointmentActivity.this, Avaliable.class);
+        Intent intent = new Intent(MakeAppointmentActivity.this, MainPanel.class);
         intent.putExtra("USER_EMAIL",USER_EMAIL);
         startActivity(intent);
         finish();

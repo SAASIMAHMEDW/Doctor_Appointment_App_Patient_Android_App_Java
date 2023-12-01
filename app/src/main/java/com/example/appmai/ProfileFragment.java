@@ -2,8 +2,6 @@ package com.example.appmai;
 
 import static android.content.Context.MODE_PRIVATE;
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -27,17 +25,21 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.squareup.picasso.Picasso;
 
-import java.util.Objects;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 
 public class ProfileFragment extends Fragment {
 
 
-    String EMAIL,PASSWORD,NAME,AGE,PASSWORD_HINT,GENDER;
-    String UPDATED_NAME,UPDATED_AGE,UPDATED_EMAIL,UPDATED_PASSWORD,UPDATED_PASSWORD_HINT,UPDATED_GENDER;
+//    String EMAIL,PASSWORD,NAME,AGE,PASSWORD_HINT,GENDER,PHONE_NO,PROFILE_PIC_URL;
+    String NAME,AGE,GENDER,PHONE_NO,EMAIL,PASSWORD,PASSWORD_HINT,PROFILE_PIC_URL;
+//    String UPDATED_NAME,UPDATED_AGE,UPDATED_EMAIL,UPDATED_PASSWORD,UPDATED_PASSWORD_HINT,UPDATED_GENDER;
+    String UPDATED_NAME,UPDATED_AGE,UPDATED_GENDER,UPDATED_PHONE_NO,UPDATED_EMAIL,UPDATED_PASSWORD,UPDATED_PASSWORD_HINT,UPDATED_PROFILE_PIC_URL;
 
-    EditText editName,editEmail,editAge,editPassword,editGender,editHint;
+    EditText editName,editEmail,editAge,editPassword,editGender,editHint,profile_user_phoneno;
+    CircleImageView user_profile_image;
     EditText emailET,passwordET;
     Button edit,update,user_logout_button;
 
@@ -51,7 +53,7 @@ public class ProfileFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
         find_views_by_ids(view);
         get_bundle_data();
-        setProfile(view);
+        setProfile();
         getUser_Info();
 
 
@@ -84,24 +86,27 @@ public class ProfileFragment extends Fragment {
         edit = view.findViewById(R.id.Edit_btn);
         update = view.findViewById(R.id.update_btn);
         user_logout_button = view.findViewById(R.id.user_logout_button);
-        emailET = view.findViewById(R.id.Profile_user_Email);
-        passwordET = view.findViewById(R.id.Profile_user_password);
+//        emailET = view.findViewById(R.id.Profile_user_Email);
+//        passwordET = view.findViewById(R.id.Profile_user_password);
         editName = view.findViewById(R.id.Profile_user_name);
         editEmail = view.findViewById(R.id.Profile_user_Email);
         editAge=view.findViewById(R.id.Profile_user_age);
         editPassword=view.findViewById(R.id.Profile_user_password);
         editGender=view.findViewById(R.id.Profile_user_gender);
         editHint=view.findViewById(R.id.Profile_user_hint);
+        profile_user_phoneno=view.findViewById(R.id.profile_user_phoneno);
+        user_profile_image=view.findViewById(R.id.user_profile_image);
     }
 
     public void Log_out_the_user(View view){
-        SharedPreferences sharedPreferences = view.getContext().getSharedPreferences(SplashScr.SHARED_PREFERENCES_NAME,MODE_PRIVATE);
+        SharedPreferences sharedPreferences = view.getContext().getSharedPreferences(PatientsSplashScreenActivity.SHARED_PREFERENCES_NAME,MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putBoolean(SplashScr.SHARED_PREFERENCES_KAY_FLAG,false);
-        editor.putString("EMAIL",null);
-        editor.putString("PASSWORD",null);
+//        editor.putBoolean(SplashScr.SHARED_PREFERENCES_KAY_FLAG,false);
+//        editor.putString("EMAIL",null);
+//        editor.putString("PASSWORD",null);
+        editor.clear();
         editor.apply();
-        Intent intent = new Intent(requireContext().getApplicationContext(), MainActivity.class);
+        Intent intent = new Intent(requireContext().getApplicationContext(), PatientsLoginActivity.class);
 //        clearBackStack();
         startActivity(intent);
         requireActivity().finishAffinity();
@@ -115,14 +120,21 @@ public class ProfileFragment extends Fragment {
     }
 
     public void get_bundle_data(){
-        Bundle b = getArguments();
-        EMAIL = b.getString("EMAILX");
-        PASSWORD=  b.getString("PASSWORDX");
+        Bundle bundle = getArguments();
+        assert bundle != null;
+        String emailx = bundle.getString("EMAILX");
+        if (emailx != null){
+            EMAIL = emailx;
+        }else {
+            EMAIL = bundle.getString("XX_EMAIL");
+        }
+//        EMAIL = b.getString("EMAILX");
+        PASSWORD=  bundle.getString("PASSWORDX");
     }
 
-    public void setProfile(View view){
-        emailET.setHint(EMAIL);
-        passwordET.setHint(PASSWORD);
+    public void setProfile(){
+//        emailET.setHint(EMAIL);
+//        passwordET.setHint(PASSWORD);
         editPassword.setHint(PASSWORD);
         editEmail.setHint(EMAIL);
 
@@ -131,6 +143,7 @@ public class ProfileFragment extends Fragment {
                 editName.setEnabled(true);
                 editAge.setEnabled(true);
                 editGender.setEnabled(true);
+                profile_user_phoneno.setEnabled(true);
                 editPassword.setEnabled(false);
                 editEmail.setEnabled(false);
                 editHint.setEnabled(true);
@@ -142,6 +155,7 @@ public class ProfileFragment extends Fragment {
         editName.setEnabled(false);
         editAge.setEnabled(false);
         editGender.setEnabled(false);
+        profile_user_phoneno.setEnabled(false);
         editPassword.setEnabled(false);
         editEmail.setEnabled(false);
         editHint.setEnabled(false);
@@ -151,6 +165,7 @@ public class ProfileFragment extends Fragment {
         editName.setHint(UPDATED_NAME);
         editAge.setHint(UPDATED_AGE);
         editGender.setHint(UPDATED_GENDER);
+        profile_user_phoneno.setHint(UPDATED_PHONE_NO);
         editHint.setHint(UPDATED_PASSWORD_HINT);
         delayed();
 
@@ -184,6 +199,13 @@ public class ProfileFragment extends Fragment {
             UPDATED_GENDER = editGender.getText().toString();
         }
 
+        // phone no.
+        if ((profile_user_phoneno.getText().toString()).length()==0){
+            UPDATED_PHONE_NO = profile_user_phoneno.getHint().toString();
+        }else {
+            UPDATED_PHONE_NO = profile_user_phoneno.getText().toString();
+        }
+
     }
 
     public void getUser_Info(){
@@ -197,9 +219,13 @@ public class ProfileFragment extends Fragment {
                 PASSWORD = documentSnapshot.get("password").toString();
                 PASSWORD_HINT = documentSnapshot.get("hint").toString();
                 GENDER = documentSnapshot.get("gender").toString();
-                editAge.setHint(AGE);
+                PHONE_NO = documentSnapshot.get("phone_no").toString();
+                PROFILE_PIC_URL = documentSnapshot.get("profile_pic_URL").toString();
+                Picasso.get().load(PROFILE_PIC_URL).into(user_profile_image);
                 editName.setHint(NAME);
+                editAge.setHint(AGE);
                 editGender.setHint(GENDER);
+                profile_user_phoneno.setHint(PHONE_NO);
                 editPassword.setHint(PASSWORD);
                 editHint.setHint(PASSWORD_HINT);
             }
@@ -212,7 +238,7 @@ public class ProfileFragment extends Fragment {
         db = FirebaseFirestore.getInstance();
         DocumentReference DR = db.collection("USERS").document(EMAIL).collection(EMAIL).document("PROFILE");
 
-        DR.update("name",UPDATED_NAME, "age",UPDATED_AGE,"hint",UPDATED_PASSWORD_HINT,"gender",UPDATED_GENDER).addOnCompleteListener(new OnCompleteListener<Void>() {
+        DR.update("name",UPDATED_NAME, "age",UPDATED_AGE,"hint",UPDATED_PASSWORD_HINT,"gender",UPDATED_GENDER,"phone_no",UPDATED_PHONE_NO).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()){
@@ -238,14 +264,14 @@ public class ProfileFragment extends Fragment {
     }
 
 
-    public void delay(View view){
-        Runnable runnable = new Runnable() {
-            @Override
-            public void run() {
-                setProfile(view);
-            }
-        };
-        Handler handler = new Handler(Looper.myLooper());
-        handler.postDelayed(runnable,2000);
-    }
+//    public void delay(View view){
+//        Runnable runnable = new Runnable() {
+//            @Override
+//            public void run() {
+//                setProfile(view);
+//            }
+//        };
+//        Handler handler = new Handler(Looper.myLooper());
+//        handler.postDelayed(runnable,2000);
+//    }
 }

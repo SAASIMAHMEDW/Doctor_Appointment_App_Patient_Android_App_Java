@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".PatientsLoginActivity">
 
     <EditText
         android:id="@+id/user_login_email"
@@ -12,6 +12,7 @@
         android:layout_height="72dp"
         android:autofillHints=""
         android:ems="10"
+        android:fontFamily="@font/alata"
         android:hint="@string/email"
         android:inputType="text"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -28,8 +29,9 @@
         android:layout_height="73dp"
         android:autofillHints=""
         android:ems="10"
+        android:fontFamily="@font/alata"
         android:hint="@string/password1"
-        android:inputType="text"
+        android:inputType="text|textPassword"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.606"
@@ -50,6 +52,7 @@
         android:layout_width="312dp"
         android:layout_height="61dp"
         android:backgroundTint="#FF724C"
+        android:fontFamily="@font/alata"
         android:text="@string/login2"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -65,6 +68,7 @@
         android:id="@+id/recovery_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/alata"
         android:text="@string/forgetten_your_password"
         android:textColor="#028CFA"
         android:textSize="16sp"
@@ -78,10 +82,22 @@
         app:layout_constraintVertical_bias="0.542"
         tools:ignore="TextContrastCheck" />
 
+    <CheckBox
+        android:id="@+id/show_hide_password_checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/alata"
+        android:text="Show Password"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.215"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/user_login_password" />
+
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/alata"
         android:text="@string/don_t_have_an_account"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -96,6 +112,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
+        android:fontFamily="@font/alata"
         android:text="@string/sign_up"
         android:textColor="#058DFA"
         android:textSize="16sp"
@@ -111,6 +128,7 @@
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/alata"
         android:text="@string/user"
         android:textSize="60sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -125,6 +143,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
+        android:fontFamily="@font/alata"
         android:text="@string/logins"
         android:textColor="@color/AppPrimaryColorX"
         android:textColorHint="#121212"

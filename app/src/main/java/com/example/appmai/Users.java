@@ -1,9 +1,37 @@
 package com.example.appmai;
 
 public class Users {
-    String Name, Age,Email, Password, Hint,Gender,uid;
+    String Name, Age,Email, Password, Password_Hint,Gender,uid,phone_no,profile_pic_URL;
 
     public Users() {
+    }
+
+    public Users(String name, String age, String email, String password, String hint, String gender, String uid, String phone_no, String profile_pic_URL) {
+        Name = name;
+        Age = age;
+        Email = email;
+        Password = password;
+        Password_Hint = hint;
+        Gender = gender;
+        this.uid = uid;
+        this.phone_no = phone_no;
+        this.profile_pic_URL = profile_pic_URL;
+    }
+
+    public String getPhone_no() {
+        return phone_no;
+    }
+
+    public void setPhone_no(String phone_no) {
+        this.phone_no = phone_no;
+    }
+
+    public String getProfile_pic_URL() {
+        return profile_pic_URL;
+    }
+
+    public void setProfile_pic_URL(String profile_pic_URL) {
+        this.profile_pic_URL = profile_pic_URL;
     }
 
     public String getGender() {
@@ -12,16 +40,6 @@ public class Users {
 
     public void setGender(String gender) {
        Gender= gender;
-    }
-
-    public Users(String name, String age, String email, String password, String hint, String gender, String uid) {
-        Name = name;
-        Email = email;
-        Password = password;
-        Hint = hint;
-        Age = age;
-        Gender = gender;
-        this.uid = uid;
     }
 
     public String getUid() {
@@ -41,7 +59,7 @@ public class Users {
     }
 
     public String getHint() {
-        return Hint;
+        return Password_Hint;
     }
 
     public String getAge() {
@@ -61,7 +79,7 @@ public class Users {
     }
 
     public void setHint(String hint) {
-        Hint = hint;
+        Password_Hint = hint;
     }
 
     public void setAge(String age) {

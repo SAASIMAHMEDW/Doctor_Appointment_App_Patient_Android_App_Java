@@ -66,6 +66,7 @@ public class ViewActivity extends AppCompatActivity {
                 DOC_NAME = documentSnapshot.get("name").toString();
                 DOC_AGE = documentSnapshot.get("age").toString();
                 DOC_GENDER = documentSnapshot.get("gender").toString();
+                DOC_PHONE_NO = documentSnapshot.get("phone_no").toString();
                 DOC_SPECIALIZATION = documentSnapshot.get("doctorSpeci").toString();
 
                 delay();
@@ -91,7 +92,7 @@ public class ViewActivity extends AppCompatActivity {
         selected_doctor_age.setText(DOC_AGE);
         selected_doctor_gender.setText(DOC_GENDER);
         selected_doctor_email.setText(DOC_EMAIL);
-        selected_doctor_phoneno.setText("9669966996");
+        selected_doctor_phoneno.setText(DOC_PHONE_NO);
         selected_doctor_specialization.setText(DOC_SPECIALIZATION);
 
     }

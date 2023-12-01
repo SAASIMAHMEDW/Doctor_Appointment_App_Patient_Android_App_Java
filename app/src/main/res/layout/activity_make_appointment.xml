@@ -40,6 +40,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
                 android:gravity="center"
                 android:orientation="vertical">
 
@@ -51,10 +52,10 @@
                     android:height="200dp"
                     android:ems="10"
                     android:hint="please describe your problem in single word"
-                    android:inputType="textMultiLine"
+                    android:inputType="text"
                     android:padding="20dp"
                     android:textAlignment="gravity" />
-
+                <!--                android:inputType="textMultiLine"-->
                 <Button
                     android:id="@+id/Make_The_Appointment_btn"
                     android:layout_width="match_parent"
@@ -74,7 +75,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
+        android:gravity="bottom|center_horizontal"
         android:orientation="vertical">
 
         <TextView
