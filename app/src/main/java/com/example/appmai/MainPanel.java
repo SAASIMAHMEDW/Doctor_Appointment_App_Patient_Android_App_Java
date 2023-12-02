@@ -76,22 +76,15 @@ public class MainPanel extends AppCompatActivity {
             assert value != null;
             for (DocumentChange dc : value.getDocumentChanges()) {
                 NOTIFICATION_STATUS = dc.getDocument().getString("status");
-                if (!NOTIFICATION_STATUS.equals("NULL"))
+                assert NOTIFICATION_STATUS != null;
+                if (NOTIFICATION_STATUS.equals("pending"));
+                else if (NOTIFICATION_STATUS.equals("NULL"));
+                else
                  Notification(NOTIFICATION_STATUS);
+//                    home_patient_appointment_status.setText(APPOINTMENT_STATUS);
+//                if (!NOTIFICATION_STATUS.equals("NULL"))
             }
         });
-    }
-
-    public void delayed(){
-        Runnable runnable = new Runnable() {
-            @Override
-            public void run() {
-//                Notification(NOTIFICATION_STATUS);
-            Toast.makeText(getApplicationContext(), NOTIFICATION_STATUS, Toast.LENGTH_SHORT).show();
-            }
-        };
-        Handler handler = new Handler(Looper.getMainLooper());
-        handler.postDelayed(runnable,2000);
     }
 
     public void Notification(String status){
@@ -103,11 +96,11 @@ public class MainPanel extends AppCompatActivity {
                 .setLargeIcon(bitmap)
                 .setSmallIcon(R.drawable.doctor_img_splashsscreen)
                 .setContentText(status)
-                .setSubText("set sub text")
-                .setChannelId("CHANNEL ID")
+                .setSubText("Your Appointment Status")
+                .setChannelId("APPOINTMENT STATUS")
                 .build();
-        notificationManager.createNotificationChannel(new NotificationChannel("CHANNEL ID","CHANNEL NAME",NotificationManager.IMPORTANCE_HIGH));
-        notificationManager.notify(69,notification);
+        notificationManager.createNotificationChannel(new NotificationChannel("APPOINTMENT STATUS","APPOINTMENT STATUS",NotificationManager.IMPORTANCE_HIGH));
+        notificationManager.notify(3,notification);
     }
 
 

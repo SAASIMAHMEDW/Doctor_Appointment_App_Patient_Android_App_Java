@@ -30,7 +30,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HomeFragment extends Fragment {
-    String NOTIFICATION_STATUS=null;
     LinearLayout user_dont_have_appointment,user_handlig_appointment;
     TextView home_doctor_name,home_doctor_phoneno,home_doctor_email,home_problem_area;
     Button home_patient_appointment_status;
@@ -56,17 +55,6 @@ public class HomeFragment extends Fragment {
 //        new Thread(this::getNotificationStatus).start();
         return view;
     }
-    public void getNotificationStatus_thread(){
-        Thread thread = new Thread(){
-            public void run(){
-                try {
-                    sleep(2000);
-                } catch (InterruptedException ignored) {}
-                finally {getNotificationStatus();}
-            }
-        };thread.start();
-    }
-
     public void getNotificationStatus(){
         FirebaseFirestore fb = FirebaseFirestore.getInstance();
         CollectionReference NOTIFICATION_STATUS_CR = fb.collection("USERS").document(EMAIL).collection(EMAIL).document(EMAIL).collection("NOTIFICATION");
@@ -79,9 +67,11 @@ public class HomeFragment extends Fragment {
             assert value != null;
             for (DocumentChange dc : value.getDocumentChanges()) {
                 APPOINTMENT_STATUS = dc.getDocument().getString("status");
-                if (!APPOINTMENT_STATUS.equals("NULL"))
+                if (APPOINTMENT_STATUS.equals("pending"))
                     home_patient_appointment_status.setText(APPOINTMENT_STATUS);
-
+                else if (APPOINTMENT_STATUS.equals("NULL"));
+                else
+                    home_patient_appointment_status.setText(APPOINTMENT_STATUS);
             }
         });
     }
